@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Medical History - Brain Tumor Detection</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --medical-primary: #2563eb;
+            --medical-secondary: #06b6d4;
+            --medical-accent: #10b981;
+            --medical-danger: #ef4444;
+            --medical-warning: #f59e0b;
+            --medical-light: #f8fafc;
+            --medical-gray: #64748b;
+            --medical-dark: #1e293b;
+            --gradient-medical: linear-gradient(135deg, #2563eb 0%, #06b6d4 100%);
+            --gradient-success: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            --gradient-danger: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            --shadow-soft: 0 10px 40px rgba(37, 99, 235, 0.15);
+            --shadow-card: 0 20px 60px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--gradient-medical);
+            min-height: 100vh;
+            color: var(--medical-dark);
+        }
+
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border: none;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            animation: slideDown 0.8s ease-out;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            transition: transform 0.3s ease;
+        }
+
+        .brain-icon {
+            background: var(--gradient-medical);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: pulse 2s infinite;
+        }
+
+        .main-container {
+            padding: 2rem 1rem;
+            min-height: calc(100vh - 80px);
+        }
+
+        .history-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            box-shadow: var(--shadow-card);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 3rem 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            animation: fadeInUp 1s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .history-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-success);
+        }
+
+        .btn-back {
+            background: rgba(100, 116, 139, 0.1);
+            border: 1px solid rgba(100, 116, 139, 0.2);
+            color: var(--medical-gray);
+            border-radius: 10px;
+            padding: 0.6rem 1.5rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            margin-bottom: 2rem;
+            text-decoration: none;
+        }
+
+        .btn-back:hover {
+            background: var(--medical-gray);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .history-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .history-title {
+            color: var(--medical-dark);
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .history-subtitle {
+            color: var(--medical-gray);
+            font-size: 1.1rem;
+        }
+
+        .records-badge {
+            display: inline-block;
+            background: var(--gradient-success);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .table-container {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .table {
+            margin-bottom: 0;
+            font-size: 0.95rem;
+        }
+
+        .table thead {
+            background: var(--gradient-medical);
+        }
+
+        .table thead th {
+            color: white;
+            font-weight: 600;
+            border: none;
+            padding: 1.2rem 1rem;
+            vertical-align: middle;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+        }
+
+        .table tbody tr {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .table tbody tr:hover {
+            background: rgba(37, 99, 235, 0.05);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .table tbody td {
+            padding: 1.2rem 1rem;
+            vertical-align: middle;
+            border: none;
+        }
+
+        .patient-name {
+            font-weight: 600;
+            color: var(--medical-dark);
+        }
+
+        .diagnosis-badge {
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .diagnosis-positive {
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--medical-danger);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+        }
+
+        .diagnosis-negative {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--medical-accent);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+
+        .confidence-bar {
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            height: 8px;
+            overflow: hidden;
+            position: relative;
+            margin-bottom: 0.3rem;
+        }
+
+        .confidence-fill {
+            height: 100%;
+            border-radius: 10px;
+            transition: width 1s ease-out;
+        }
+
+        .confidence-fill.high {
+            background: var(--gradient-success);
+        }
+
+        .confidence-fill.medium {
+            background: linear-gradient(90deg, #f59e0b, #fb923c);
+        }
+
+        .confidence-fill.low {
+            background: var(--gradient-danger);
+        }
+
+        .confidence-text {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--medical-gray);
+        }
+
+        .mri-thumbnail {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 12px;
+            border: 2px solid rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .mri-thumbnail:hover {
+            transform: scale(1.1);
+            border-color: var(--medical-primary);
+        }
+
+        .btn-delete {
+            background: var(--gradient-danger);
+            border: none;
+            color: white;
+            border-radius: 8px;
+            padding: 0.5rem 1rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-delete:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: var(--medical-gray);
+        }
+
+        .empty-icon {
+            font-size: 4rem;
+            color: var(--medical-gray);
+            opacity: 0.5;
+            margin-bottom: 1rem;
+        }
+
+        .floating-particles {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .particle:nth-child(1) {
+            width: 60px;
+            height: 60px;
+            top: 10%;
+            left: 10%;
+            animation-delay: -2s;
+        }
+
+        .particle:nth-child(2) {
+            width: 80px;
+            height: 80px;
+            top: 70%;
+            right: 15%;
+            animation-delay: -4s;
+        }
+
+        .particle:nth-child(3) {
+            width: 40px;
+            height: 40px;
+            bottom: 20%;
+            left: 20%;
+            animation-delay: -1s;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                transform: translateY(40px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            33% {
+                transform: translateY(-30px) rotate(120deg);
+            }
+            66% {
+                transform: translateY(30px) rotate(240deg);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .history-card {
+                margin: 1rem;
+                padding: 2rem 1.5rem;
+            }
+
+            .history-title {
+                font-size: 1.8rem;
+            }
+
+            .table-responsive {
+                border-radius: 16px;
+            }
+
+            .table thead th,
+            .table tbody td {
+                padding: 0.8rem 0.5rem;
+                font-size: 0.85rem;
+            }
+
+            .mri-thumbnail {
+                width: 60px;
+                height: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center gap-3" href="/">
+                <i class="fa-solid fa-brain fa-2x brain-icon"></i>
+                <span class="fs-4 fw-bold text-primary">Brain Tumor Detection</span>
+            </a>
+        </div>
+    </nav>
+
+    <div class="main-container">
+        <div class="history-card">
+            <a href="/" class="btn-back">
+                <i class="fa-solid fa-arrow-left me-2"></i>Back to Home
+            </a>
+
+            <div class="history-header">
+                <div class="records-badge">
+                    <i class="fa-solid fa-database me-2"></i>{{ records|length }} Medical Records
+                </div>
+                <h1 class="history-title">
+                    <i class="fa-solid fa-clock-rotate-left me-3" style="color: var(--medical-accent);"></i>
+                    Medical History
+                </h1>
+                <p class="history-subtitle">Complete patient diagnosis history and AI analysis records</p>
+            </div>
+
+            {% if records %}
+            <div class="table-container">
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle">
+                        <thead>
+                            <tr>
+                                <th><i class="fa-solid fa-user me-2"></i>Patient</th>
+                                <th><i class="fa-solid fa-calendar me-2"></i>Age</th>
+                                <th><i class="fa-solid fa-phone me-2"></i>Contact</th>
+                                <th><i class="fa-solid fa-stethoscope me-2"></i>Diagnosis</th>
+                                <th><i class="fa-solid fa-chart-line me-2"></i>Confidence</th>
+                                <th><i class="fa-solid fa-x-ray me-2"></i>Scan</th>
+                                <th><i class="fa-solid fa-clock me-2"></i>Date</th>
+                                <th><i class="fa-solid fa-trash me-2"></i>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for record in records %}
+                            <tr>
+                                <td>
+                                    <div class="patient-name">{{ record.name }}</div>
+                                </td>
+                                <td>{{ record.age }} years</td>
+                                <td>{{ record.phone }}</td>
+                                <td>
+                                    <span class="diagnosis-badge {% if 'No Tumor' in record.result %}diagnosis-negative{% else %}diagnosis-positive{% endif %}">
+                                        {% if "No Tumor" in record.result %}
+                                            <i class="fa-solid fa-check-circle me-1"></i>No Tumor
+                                        {% else %}
+                                            <i class="fa-solid fa-exclamation-triangle me-1"></i>{{ record.result.replace('Tumor: ', '') }}
+                                        {% endif %}
+                                    </span>
+                                </td>
+                                <td>
+                                    {% set confidence_num = record.confidence.replace('%', '') | float %}
+                                    <div class="confidence-bar">
+                                        <div class="confidence-fill {% if confidence_num >= 80 %}high{% elif confidence_num >= 60 %}medium{% else %}low{% endif %}"
+                                             style="width: {{ record.confidence }}"></div>
+                                    </div>
+                                    <div class="confidence-text">{{ record.confidence }}</div>
+                                </td>
+                                <td>
+                                    <img src="{{ url_for('get_uploaded_file', filename=record.file_path) }}"
+                                         alt="MRI Scan" class="mri-thumbnail"
+                                         onclick="window.open(this.src, '_blank')">
+                                </td>
+                                <td>
+                                    <div style="font-weight: 500;">
+                                        {{ record.timestamp.strftime('%Y-%m-%d') if record.timestamp else '' }}
+                                    </div>
+                                    <div style="font-size: 0.85rem; color: var(--medical-gray);">
+                                        {{ record.timestamp.strftime('%H:%M:%S') if record.timestamp else '' }}
+                                    </div>
+                                </td>
+                                <td>
+                                    <form method="POST" action="/delete/{{ record._id }}"
+                                          onsubmit="return confirm('Are you sure you want to permanently delete this medical record?');">
+                                        <button class="btn btn-delete" type="submit">
+                                            <i class="fa-solid fa-trash me-1"></i>Delete
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            {% else %}
+            <div class="empty-state">
+                <i class="fa-solid fa-file-medical empty-icon"></i>
+                <h4 style="color: var(--medical-gray); margin-bottom: 1rem;">No Medical Records Found</h4>
+                <p style="color: var(--medical-gray); margin-bottom: 2rem;">
+                    Start by uploading an MRI scan for AI-powered brain tumor detection.
+                </p>
+                <a href="/" class="btn btn-primary" style="background: var(--gradient-medical); border: none; border-radius: 12px; padding: 1rem 2rem; font-weight: 600; text-decoration: none;">
+                    <i class="fa-solid fa-plus me-2"></i>Create First Record
+                </a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Animate confidence bars on load
+        document.addEventListener('DOMContentLoaded', function() {
+            const bars = document.querySelectorAll('.confidence-fill');
+            bars.forEach((bar, index) => {
+                const width = bar.style.width;
+                bar.style.width = '0%';
+                setTimeout(() => {
+                    bar.style.width = width;
+                }, 300 + (index * 100));
+            });
+        });
+    </script>
+</body>
+</html>

@@ -5,16 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c9fe775a-ca5d-48a4-a132-2fb3ef2c0e9b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/Brain Tumor Detection.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/brain_tumour_detection_using_deep_learning.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/model.h5" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/Brain_tumor.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Brain_tumor.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/brain_tumour_detection_using_deep_learning.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/models/brain_tumour_detection_using_deep_learning.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/Brain_tumor.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Brain_tumor.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/Te-me_0215.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/Te-me_0216.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/Te-me_0217.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/Te-me_0218.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/Te-no_0329.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/Te-no_0363.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/Te-pi_0273.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/Te-pi_0274.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/Te-pi_0277.jpg" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,10 +51,20 @@
     &quot;Python.main.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/91738/OneDrive/Documents/Desktop/Brain Tumor Detection_asmp_5&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
+      &quot;PLAIN_TEXT&quot;,
+      &quot;EditorConfig&quot;
+    ]
   }
 }</component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\91738\PycharmProjects\Brain Tumor Detection\models" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\91738\PycharmProjects\Brain Tumor Detection\models" />
     </key>
@@ -102,7 +116,6 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/main.py</url>
-          <line>17</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
