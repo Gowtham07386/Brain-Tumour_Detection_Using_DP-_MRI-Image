@@ -6,8 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="c9fe775a-ca5d-48a4-a132-2fb3ef2c0e9b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/brain_tumour_detection_using_deep_learning.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/models/brain_tumour_detection_using_deep_learning.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
