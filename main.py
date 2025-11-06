@@ -15,7 +15,7 @@ app.secret_key = 'your_secret_key'  # change for security
 # Load model
 MODEL_PATH = os.path.join("models", "model.h5")
 model = load_model(MODEL_PATH, compile=False)
-class_labels = ["pituitary", "glioma", "notumor", "meningioma"]
+class_labels = ["glioma", "meningioma", "notumor","pituitary"]
 
 
 # Upload folder
