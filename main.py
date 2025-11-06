@@ -26,7 +26,7 @@ app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 
 
 # MongoDB setup
-client = MongoClient("mongodb://localhost:27017/")
+client = MongoClient("mongodb+srv://kopperagowtham:Radhakrishna%402@cluster0.mte0b.mongodb.net/")
 db = client["BrainTumorDB"]
 predictions_collection = db["predictions"]
 users_collection = db["users"]
